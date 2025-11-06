@@ -86,6 +86,16 @@ class AskResponse(BaseModel):
 
 # ====================== Utilidades ======================
 
+# Se habilita la API para CORS
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 
 def qdrant_search_docs(query: str, k: int, filtro: Dict[str, Any] | None):
