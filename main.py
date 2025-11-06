@@ -7,6 +7,7 @@ from typing import List, Optional, Dict, Any
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from dotenv import load_dotenv, find_dotenv
+from fastapi.middleware.cors import CORSMiddleware
 
 from qdrant_client import QdrantClient
 #from qdrant_client.http import models as qm
