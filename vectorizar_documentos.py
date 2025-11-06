@@ -36,23 +36,21 @@ qdrant = QdrantClient(
     api_key=os.getenv("QDRANT_API_KEY")  # None si sin auth
 )
 
-qdrant.delete(
-    collection_name=COLLECTION,
-    points_selector=qm.FilterSelector(
-    filter=qm.Filter(
-        must=[] # An empty 'must' list in a filter matches all points
-        )
-     ),
-     wait=True # Set to True to wait for the operation to complete
-)
+# qdrant.delete(
+#     collection_name=COLLECTION,
+#     points_selector=qm.FilterSelector(
+#     filter=qm.Filter(
+#         must=[] # An empty 'must' list in a filter matches all points
+#         )
+#      ),
+#      wait=True # Set to True to wait for the operation to complete
+# )
 
 
 # Crear colección si no existe, con named vector "text"
 try:
-    print("Pasar por aquí NOOOOOO")
     qdrant.get_collection(COLLECTION)
 except Exception:
-    print("Pasar por aquí SIIIIII")
     qdrant.create_collection(
         collection_name=COLLECTION,
         vectors_config={VECTOR_NAME: qm.VectorParams(size=dim, distance=qm.Distance.COSINE)},
@@ -65,6 +63,10 @@ qdrant.create_payload_index(
     field_schema=qm.PayloadSchemaType.INTEGER
 )
 # ---------- Procesar documento ----------
+##########################################
+##########################################
+##########################################
+##########################################
 result = procesar_documento(
     pdf_path="./data/documents/beneficios_complementarios_2026.pdf",
     fondo_id=3,
@@ -73,6 +75,10 @@ result = procesar_documento(
     force=False,
 )
 
+##########################################
+##########################################
+##########################################
+##########################################
 child_docs  = result["child_docs"]
 parent_docs = result["parent_docs"]
 doc_ids     = result["doc_ids"]
