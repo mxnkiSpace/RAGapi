@@ -36,15 +36,15 @@ qdrant = QdrantClient(
     api_key=os.getenv("QDRANT_API_KEY")  # None si sin auth
 )
 
-# qdrant.delete(
-#     collection_name=COLLECTION,
-#     points_selector=qm.FilterSelector(
-#     filter=qm.Filter(
-#         must=[] # An empty 'must' list in a filter matches all points
-#         )
-#      ),
-#      wait=True # Set to True to wait for the operation to complete
-# )
+qdrant.delete(
+     collection_name=COLLECTION,
+     points_selector=qm.FilterSelector(
+     filter=qm.Filter(
+         must=[] # An empty 'must' list in a filter matches all points
+         )
+      ),
+      wait=True # Set to True to wait for the operation to complete
+)
 
 
 # Crear colección si no existe, con named vector "text"
